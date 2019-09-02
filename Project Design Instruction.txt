@@ -1,0 +1,181 @@
+
+Chart1: Create a visualization that provides a breakdown between the male and female employees working in the company each year, starting from 1990. 
+
+Thinking Logics:
+
+SQL:
+- SQL output Planning : 
+Columns name & order: Calendar_year, gender, num_of_employees
+
+
+QC: 
+
+1. if column name and order matches instructions?
+2. if each column data format follows the instructions?
+3. if records are correspondent to conditions required applied to the data?
+
+
+Export data 
+
+file name: Task1.csv
+file location: 
+
+Tableau:
+- Chart type: Bar chart
+- Chart details: 
+stack bar chart (FeMale bottom, female top) 
+Male part consist of male percentage number for each year
+Female part consist of female percentage number for each year
+number of employees sum: (y-axis)
+each year (x-axis)
+
+review & warning !!!: the graph we created directly from the SQL query data set only shows how many employees got hired each year. But we want to show how many employees working in each year which requires a cumulative graph logics progressing or decreasing from year to years:
+
+solution: Using table calculation 
+
+Warning : also check if the aggregation/cumulation percentages are calculated horizontally with total or vertically with year total
+
+solution: using computing use (table down or across)
+
+
+
+Conclusion :
+
+Insights:
+
+1. number of total employees are increasing from 1990 - 2002
+2. the ratio between male and female employees are steadily kept approximately 60% : 40%
+
+*-----------------------------------------------------------*
+
+Chart2: 
+Compare the number of male managers to the numbers of female managers from different departments for each year, starting from 1990
+
+challenge: 
+1. design SQL and Viz data integration.
+2. query what kind of raw data before proceed to tableau visualization 
+(use CASE WHEN, and CROSS JOIN Table (join each row of table with each row of other table)
+3. how to aggregate raw data queried from SQL in tableau to fit visualization 
+
+
+Thanking logics:
+
+Sql Query:
+
+Column and record:
+
+dept_name, gender, emp_no, from_date, to_date, calendar_year, active(yes: 1, no: 0)
+
+interpretation: we want to define if a manager worked for certain department in each year, we will need working start date and working end date, the duration is the condition we use (from_date < calendar year < to_date) to determine whether the employee id was found and counted. 
+
+
+Tableau: Area chart (Female Top, Male Bottom)
+apply filter as department
+
+
+Insights:
+
+1. manager female vs male ratio is increasing in general, however, there is recent decrease in ratio due to decrease in number of manager
+
+2. Marketing has the biggest female ration in each yeats of manager total ratio, Sale has no female manager from 1990-2002
+
+
+*-----------------------------------------------------------*
+
+Chart3:
+Compare the average salary of female versus male employees in the entire company until year 2002, and add a filter allowing you to see that per each department.
+
+
+Sql Query:
+
+Column order and name:
+
+gender, dept_name, avg_salary, calendar_year
+
+
+
+Tableau
+
+chart type: line chart to show the series of changes of average salary for male and female
+
+challenges: how to aggregate avg salary from the sql query (we aggregate it with AVG in tableau)
+
+
+
+tip:
+
+
+to audit if the aggregate number inside the chart is as correct as the data queried, we can apply filter and pinpoint specific year, dept and gender, see if that avg salary number matches the queried data table
+
+
+Insights: 
+1. salary is increasing in total and each dept
+2. However, there are  a big decrease for male in 1991-1992 in salary (depression?)
+3. male salary in total is bigger than female salary
+
+*-----------------------------------------------------------*
+
+Chart4:
+
+Create an SQL stored procedure that will allow you to obtain the average male and female salary per department within a certain salary range. Let this range be defined by two values the user can insert when calling the procedure.
+
+Finally, visualize the obtained result-set in Tableau as a double bar chart. 
+
+
+Sql:
+
+1. must create a procedure
+2. find the certain salary range by doing some simple data exploration:
+
+   There have not been many people who have earned less than 50000 or more than 90000
+   so we exclude < 50000, >90000 besetting up parameters inside of the procedure
+
+3. column order and name:
+gender, dept_name, avg_salary
+
+
+
+Tableau:
+
+Double bar chart (two gender bard chart side by side instead of on top of each other)
+
+trick of generating two sided bar chart is to drag gender into column area
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
